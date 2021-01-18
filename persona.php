@@ -12,11 +12,16 @@
     public $lastname;
     public $fiscal_code;
 
-    function __construct($name, $lastname, $fiscal_code)
+    public function __construct($name, $lastname, $fiscal_code)
     {
       $this->name = $name;
       $this->lastname = $lastname;
       $this->fiscal_code = $fiscal_code;
+    }
+    function print() {
+      foreach ($this as $key => $value) {
+        echo '<h5>' . $key . ' :  ' . $value . ', ' . '</h5>';
+      }
     }
   }
 
@@ -28,15 +33,15 @@
     public $giorni_lavorativi;
     public $compenso_giornaliero;
 
-    function __construct($code_employed, $compenso_giornaliero, $giorni_lavorativi)
+    public function __construct($name, $lastname, $fiscal_code, $code_employed, $compenso_giornaliero, $giorni_lavorativi)
     {
+      parent::__construct($name, $lastname, $fiscal_code);
       $this->code_employed = $code_employed;
       $this->compenso_giornaliero = $compenso_giornaliero;
       $this->giorni_lavorativi = $giorni_lavorativi;
-      parent::__construct($name, $lastname, $fiscal_code);
     }
     public function calc_compenso() {
-      echo($this->giorni_lavorativi * $this->compenso_giornaliero);
+      echo('<h5>' . "l'operaio ha un salario pari a € " . $this->giorni_lavorativi * $this->compenso_giornaliero * 4 . '</h5>');
     }
   }
 
@@ -49,14 +54,14 @@
     public $costo_ora;
     public $ore;
 
-    public function __construct($costo_ora, $ore)
+    public function __construct($name, $lastname, $fiscal_code, $code_employed, $costo_ora, $ore)
     {
+      parent::__construct($name, $lastname, $fiscal_code, $code_employed, $compenso_giornaliero, $giorni_lavorativi);
       $this->costo_ora = $costo_ora;
       $this->ore = $ore;
-      parent::__construct($name, $lastname, $fiscal_code, $code_employed);
     }
     public function calc_ore() {
-      echo ($this->costo_ora * $this->ore);
+      echo ('<h5>' . "l'operaio ha un salario pari a € " . $this->costo_ora * $this->ore . '</h5>');
     }
   }
 
@@ -68,15 +73,14 @@
     public $commissione_price;
     public $nome_commissione;
 
-    function __construct($commissione_price, $nome_commissione)
+    function __construct($name, $lastname, $fiscal_code, $code_employed, $commissione_price, $nome_commissione)
     {
+      parent::__construct($name, $lastname, $fiscal_code, $code_employed, $costo_ora, $ore);
       $this->commissione_price = $commissione_price;
       $this->nome_commissione = $nome_commissione;
-      parent::__construct($name, $lastname, $fiscal_code, $code_employed);
     }
     public function calc_compenso_commissione() {
-       echo ($this->commissione_price);
+       echo ('<h5>' . "l'operaio ha un salario pari a € " . $this->commissione_price . '</h5>');
     }
   }
-
  ?>
