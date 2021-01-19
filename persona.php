@@ -20,7 +20,7 @@
     }
     function print() {
       foreach ($this as $key => $value) {
-        echo '<h2>' . $key . ' :  ' . $value . ', ' . '</h2>';
+        echo '<h2 style="color: blue">' . $key . ' :  ' . $value . ', ' . '</h2>';
       }
     }
   }
@@ -41,11 +41,9 @@
       $this->giorni_lavorativi = $giorni_lavorativi;
     }
     public function calc_compenso() {
-      echo('<h3>' . "l'operaio ha un salario pari a € " . $this->giorni_lavorativi * $this->compenso_giornaliero * 4 . '</h3>');
+      echo('<h3 style="color: red">' . "l'operaio ha un salario pari a € " . $this->giorni_lavorativi * $this->compenso_giornaliero * 4 . '</h3>');
     }
   }
-
-
 
 
 
@@ -56,15 +54,17 @@
 
     public function __construct($name, $lastname, $fiscal_code, $code_employed, $costo_ora, $ore)
     {
-      parent::__construct($name, $lastname, $fiscal_code, $code_employed, $compenso_giornaliero=null , $giorni_lavorativi=1);
+      parent::__construct($name, $lastname, $fiscal_code, $code_employed, $compenso_giornaliero=null , $giorni_lavorativi=3);
       $this->costo_ora = $costo_ora;
       $this->ore = $ore;
+      if ($giorni_lavorativi < 1) {
+        throw new Exception ('Devi fare almeno più giorni di lavoro');
+      }
     }
     public function calc_ore() {
-      echo ('<h3>' . "l'operaio ha un salario pari a € " . $this->costo_ora * $this->ore . '</h3>');
+      echo ('<h3 style="color: red">' . "l'operaio ha un salario pari a € " . $this->costo_ora * $this->ore . '</h3>');
     }
   }
-
 
 
 
@@ -78,11 +78,12 @@
       parent::__construct($name, $lastname, $fiscal_code, $code_employed, $costo_ora=null, $ore=null);
       $this->commissione_price = $commissione_price;
       $this->nome_commissione = $nome_commissione;
+      if ($nome_commissione = '') {
+        throw new Exception ("VuotO Fratellì");
+      }
     }
     public function calc_compenso_commissione() {
-       echo ('<h3>' . "l'operaio ha un salario pari a € " . $this->commissione_price . '</h3>');
+       echo ('<h3 style="color: red">' . "l'operaio ha un salario pari a € " . $this->commissione_price . '</h3>');
     }
   }
-
-
  ?>
