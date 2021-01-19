@@ -20,7 +20,7 @@
     }
     function print() {
       foreach ($this as $key => $value) {
-        echo '<h5>' . $key . ' :  ' . $value . ', ' . '</h5>';
+        echo '<h2>' . $key . ' :  ' . $value . ', ' . '</h2>';
       }
     }
   }
@@ -41,7 +41,7 @@
       $this->giorni_lavorativi = $giorni_lavorativi;
     }
     public function calc_compenso() {
-      echo('<h5>' . "l'operaio ha un salario pari a € " . $this->giorni_lavorativi * $this->compenso_giornaliero * 4 . '</h5>');
+      echo('<h3>' . "l'operaio ha un salario pari a € " . $this->giorni_lavorativi * $this->compenso_giornaliero * 4 . '</h3>');
     }
   }
 
@@ -56,12 +56,12 @@
 
     public function __construct($name, $lastname, $fiscal_code, $code_employed, $costo_ora, $ore)
     {
-      parent::__construct($name, $lastname, $fiscal_code, $code_employed, $compenso_giornaliero, $giorni_lavorativi);
+      parent::__construct($name, $lastname, $fiscal_code, $code_employed, $compenso_giornaliero=null , $giorni_lavorativi=1);
       $this->costo_ora = $costo_ora;
       $this->ore = $ore;
     }
     public function calc_ore() {
-      echo ('<h5>' . "l'operaio ha un salario pari a € " . $this->costo_ora * $this->ore . '</h5>');
+      echo ('<h3>' . "l'operaio ha un salario pari a € " . $this->costo_ora * $this->ore . '</h3>');
     }
   }
 
@@ -75,12 +75,14 @@
 
     function __construct($name, $lastname, $fiscal_code, $code_employed, $commissione_price, $nome_commissione)
     {
-      parent::__construct($name, $lastname, $fiscal_code, $code_employed, $costo_ora, $ore);
+      parent::__construct($name, $lastname, $fiscal_code, $code_employed, $costo_ora=null, $ore=null);
       $this->commissione_price = $commissione_price;
       $this->nome_commissione = $nome_commissione;
     }
     public function calc_compenso_commissione() {
-       echo ('<h5>' . "l'operaio ha un salario pari a € " . $this->commissione_price . '</h5>');
+       echo ('<h3>' . "l'operaio ha un salario pari a € " . $this->commissione_price . '</h3>');
     }
   }
+
+
  ?>
